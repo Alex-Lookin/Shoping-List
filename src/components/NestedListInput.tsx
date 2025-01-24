@@ -15,7 +15,7 @@ const NestedListInput = ({ nTasks, setNTasks} : INestedListInput): JSX.Element =
     <div className='task-input'>
       <input
         type='text'
-        placeholder='Введите название...'
+        placeholder='Что купить?'
         value={nTask}
         onChange={(e) => setNTask(e.target.value)}
       />

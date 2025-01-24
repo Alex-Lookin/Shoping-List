@@ -32,7 +32,7 @@ const TaskItem = ({ task, tasks, setTasks }: ITaskItemProps) => {
         onChange={toggleCompletion}
         />
         <span>{task.text}</span>
-        <button onClick={deleteTask}>Удалить</button>
+        <button onClick={deleteTask}>Передумать</button>
       </label>
       {/*<NestedListInput nTasks={nTasks} nSetTasks={nSetTasks} />*/}
       {/*<FiltersCartList cartFilter={cartFilter} setCartFilter={setCartFilter}/>*/}

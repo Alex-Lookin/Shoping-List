@@ -4,6 +4,7 @@ import TaskInput from './components/TaskInput.tsx';
 import Filters from './components/Filters.tsx';
 import TaskList from './components/TaskList.tsx';
 import {ITask} from './types/types.ts';
+// import './styles/globals.scss'
 
 
 

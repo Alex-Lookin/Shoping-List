@@ -26,7 +26,7 @@ const NestedListItem = ({ nTask, nTasks, setNTasks }: INestedListItemProps) => {
         onChange={toggleCompletion}
         />
         <span>{nTask.text}</span>
-        <button onClick={deleteTask}>Удалить</button>
+        <button onClick={deleteTask}>Дождусь акции</button>
       </label>
     </li>
   );

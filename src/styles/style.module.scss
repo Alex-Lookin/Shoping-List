@@ -1,0 +1,24 @@
+@use './../../../../src/styles/globals' as globals;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.userWrapper {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  font: globals.$h5-700-24-RFDewi;
+}
+
+.iframe {
+  margin: 10px 0;
+}

@@ -17,11 +17,11 @@ const addTask = () => {
     <label className='task-input'>
       <input
         type='text'
-        placeholder='Введите название...'
+        placeholder='Введите название списка'
         value={task}
         onChange={(e) => setTask(e.target.value)}
       />
-      <button onClick={addTask}>Добавить</button>
+      <button onClick={addTask}>Создать*</button>
     </label>
     );
   };
