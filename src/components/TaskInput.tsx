@@ -14,7 +14,7 @@ const addTask = () => {
 };
 
   return(
-    <div className='task-input'>
+    <label className='task-input'>
       <input
         type='text'
         placeholder='Введите название...'
@@ -22,7 +22,7 @@ const addTask = () => {
         onChange={(e) => setTask(e.target.value)}
       />
       <button onClick={addTask}>Добавить</button>
-    </div>
+    </label>
     );
   };
 

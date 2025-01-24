@@ -3,20 +3,30 @@ import Header from './components/header.tsx';
 import TaskInput from './components/TaskInput.tsx';
 import Filters from './components/Filters.tsx';
 import TaskList from './components/TaskList.tsx';
+import {ITask} from './types/types.ts';
 
 
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<ITask[] | []>([]);
   const [filter, setFilter] = useState<string>('all');
 
+
   return(
-    <div className="app">
-      <Header title='Shopping List'/>
-      <TaskInput tasks={tasks} setTasks={setTasks} />
-      <Filters filter={filter} setFilter={setFilter} />
-      <TaskList tasks={tasks} setTasks={setTasks} filter={filter} />
-    </div>
+    <>
+      <Header title='Shopping List' />
+      <main className="app">
+
+        <TaskInput tasks={tasks} setTasks={setTasks} />
+        <Filters filter={filter} setFilter={setFilter} />
+        <ul className="task-list">
+          <TaskList tasks={tasks} setTasks={setTasks} filter={filter} />
+
+        </ul>
+
+
+      </main>
+    </>
   );
 };
 

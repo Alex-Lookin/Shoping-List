@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<header>
+  <h1></h1>                                /*header.tsx*/
+</header>
+
+<main>
+
+
+    <label>
+      <input/>
+      <button>Добавить</button>             /*TaskInput.tsx*/
+    </label>
+
+
+  <div>
+    <button>Все</button>
+    <button>Невыполненные</button>         /*Filters*/
+    <button>Выполненные</button>
+  </div>
+
+
+
+  <ul class='TaskList'>
+    <li class="TaskItem">
+      <label>
+          <input/>
+          <span></span>
+          <button>Удалить</button>
+      </label>
+      <button></button>
+      <ol class="NestedList">
+        <li class="NestedListItem">
+          <label>
+            <input/>
+            <button>Добавить</button>
+          </label>
+          <label class="NestedListInput">
+            <input/>
+            <span></span>
+            <button>Удалить</button>
+          </label>
+          <div class="FiltersCartList">
+            <button>Весь список</button>
+            <button>Осталось купить</button>
+            <button>Уже в корзине</button>
+          </div>
+        </li>
+      </ol>
+    </li>
+  </ul>
+
+</main>
+
+</body>
+</html>

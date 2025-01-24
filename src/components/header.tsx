@@ -1,8 +1,6 @@
-interface IProps {
-title: string;
-}
+import { ITitleHeaderProps } from '../types/types.ts'
 
-const Header = ({ title } : IProps ) => {
+const Header = ({ title } : ITitleHeaderProps ) => {
   return (
     <header className='header'>
       <h1>{title}</h1>
