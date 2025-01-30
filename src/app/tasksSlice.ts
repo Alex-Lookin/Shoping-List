@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ITask } from '../types/types';
 
-const initialState = {
+const initialState: { tasks: ITask[] } = {
   tasks: [],
 };
 
@@ -9,11 +10,7 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
-      state.tasks.push({
-        id: Date.now(),
-        text: action.payload.text,
-        completed: false,
-      });
+      state.tasks.push(action.payload);
     },
     toggleTask: (state, action) => {
       const task = state.tasks.find((task) => task.id === action.payload);

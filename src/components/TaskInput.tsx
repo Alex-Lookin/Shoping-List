@@ -1,29 +1,37 @@
-import {ITaskInputProps} from '../types/types.ts';
-import {useState} from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTask } from '../app/tasksSlice.ts';
+import { ITask } from '../types/types.ts';
 
 
 
-const TaskInput = ({ tasks, setTasks} : ITaskInputProps): JSX.Element => {
-    const [task, setTask] =useState('');
+const TaskInput: React.FC = () => {
+  const dispatch = useDispatch();
+  const [taskText, setTaskText] = useState('');
 
-const addTask = () => {
-  if(task.trim()){  /*Убрать пробелы*/
-    setTasks([...tasks, { id: Date.now(), text: task, completed: false }]);
-    setTask('');
-  }
-};
-
-  return(
-    <label className='task-input'>
-      <input
-        type='text'
-        placeholder='Введите название списка'
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-      />
-      <button onClick={addTask}>Создать*</button>
-    </label>
-    );
+  const handleAddTask = () => {
+    if (taskText.trim()) {
+      const newTask: ITask = {
+        id: Date.now(),
+        text: taskText,
+        completed: false,
+      };
+      dispatch(addTask(newTask));
+      setTaskText('');
+    }
   };
+
+  return (
+    <label className="task-input">
+      <input
+        type="text"
+        placeholder="Введите название списка"
+        value={taskText}
+        onChange={(e) => setTaskText(e.target.value)}
+      />
+      <button onClick={handleAddTask}>Создать</button>
+    </label>
+  );
+};
 
   export default TaskInput;

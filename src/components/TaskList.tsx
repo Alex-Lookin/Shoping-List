@@ -1,10 +1,17 @@
-import { ITaskListIProps } from '../types/types.ts'
-import TaskItem from './TaskItem.tsx';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
+import TaskItem from './TaskItem';
+import { ITask } from '../types/types';
 
+interface TaskListProps {
+  filter: string;
+}
 
-const TaskList = ({ tasks, setTasks, filter }: ITaskListIProps) => {
+const TaskList: React.FC<TaskListProps> = ({ filter }) => {
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
 
-  const filteredTasks = tasks.filter((task) => {
+  const filteredTasks = tasks.filter((task: ITask) => {
     if (filter === 'completed') return task.completed;
     if (filter === 'active') return !task.completed;
     return true;
@@ -12,8 +19,8 @@ const TaskList = ({ tasks, setTasks, filter }: ITaskListIProps) => {
 
   return (
     <>
-      {filteredTasks.map((task) => (
-        <TaskItem key={task.id} task={task} tasks={tasks} setTasks={setTasks} />
+      {filteredTasks.map((task: ITask) => (
+        <TaskItem key={task.id} task={task} />
       ))}
     </>
   );

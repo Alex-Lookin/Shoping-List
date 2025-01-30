@@ -1,27 +1,25 @@
-import { useState } from 'react';
-import Header from './components/header.tsx';
+import Header from './components/Header.tsx';
 import TaskInput from './components/TaskInput.tsx';
 import Filters from './components/Filters.tsx';
 import TaskList from './components/TaskList.tsx';
-import {ITask} from './types/types.ts';
+import { RootState } from './app/store.ts';
+import {  useSelector } from 'react-redux';
 // import './styles/globals.scss'
 
 
-
 const App = () => {
-  const [tasks, setTasks] = useState<ITask[] | []>([]);
-  const [filter, setFilter] = useState<string>('all');
-
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const filter = useSelector((state: RootState) => state.filter.filter);
 
   return(
     <>
-      <Header title='Shopping List' />
+      <Header title = 'Shopping List' />
       <main className="app">
 
-        <TaskInput tasks={tasks} setTasks={setTasks} />
-        <Filters filter={filter} setFilter={setFilter} />
+        <TaskInput />
+        <Filters />
         <ul className="task-list">
-          <TaskList tasks={tasks} setTasks={setTasks} filter={filter} />
+          <TaskList tasks={tasks} filter={filter} />
 
         </ul>
 
