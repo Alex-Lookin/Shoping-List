@@ -1,15 +1,9 @@
-import { ITask, ITaskItemProps } from '../types/types.ts';
-// import NestedListInput from './NestedListInput.tsx';
-import { useState } from 'react';
-// import NestedList from './NestedList.tsx';
-// import FiltersCartList from './FiltersCartList.tsx';
-import ButtonOpeningList from './ButtonOpeningList.tsx'
+import { ITaskItemProps } from '../types/types.ts';
 
 
 /*TaskItem отвечает за отображение одного элемента задачи в списке дел*/
 const TaskItem = ({ task, tasks, setTasks }: ITaskItemProps) => {
-  const [nTasks, setNTasks] = useState<ITask[] | []>([]);
-  // const [cartFilter, setCartFilter] = useState<string>('all');
+
   /*toggleCompletion Отвечает за переключение состояния выполнения задачи (отметить как выполненную/невыполненную).*/
   const toggleCompletion = () => {
     setTasks(
@@ -34,12 +28,6 @@ const TaskItem = ({ task, tasks, setTasks }: ITaskItemProps) => {
         <span>{task.text}</span>
         <button onClick={deleteTask}>Передумать</button>
       </label>
-      {/*<NestedListInput nTasks={nTasks} nSetTasks={nSetTasks} />*/}
-      {/*<FiltersCartList cartFilter={cartFilter} setCartFilter={setCartFilter}/>*/}
-      <ButtonOpeningList nTasks={nTasks} setNTasks={setNTasks}/>
-      {/*<ol className="NestedList">*/}
-      {/*  <NestedList nTasks={nTasks} nSetTasks={nSetTasks} cartFilter={cartFilter}/>*/}
-      {/*</ol>*/}
     </li>
   );
 };
