@@ -4,13 +4,16 @@ import { ITask } from '../types/types.ts';
 
 const API_URL = 'https://679bf67833d316846325a3e8.mockapi.io/tasks';
 
+
+
 export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
   try {
     const response = await axios.get(API_URL);
     return response.data;
-  } catch {
-    return alert('Произошла ошибка при загрузке данных с сервера. Пожалуйста, проверьте ваше подключение к интернету и обновите страницу');
-  }
+  } catch(error) {
+    console.log(error);
+    return { message: '\'Произошла ошибка при загрузке данных с сервера. Пожалуйста, проверьте ваше подключение к интернету и обновите страницу'};
+    }
 });
 
 export const addTask = createAsyncThunk('tasks/addTask', async (newTask: ITask) => {

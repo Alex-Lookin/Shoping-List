@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../app/filterSlice.ts';
-import { RootState } from '../app/store.ts';
+import { setFilter } from '../../../app/filterSlice.ts';
+import { RootState } from '../../../app/store.ts';
+import { IFilterButtonProps } from '../../../types/types.ts'
 
-const Filters: React.FC = () => {
+
+export const Filters: React.FC<IFilterButtonProps> = () => {
   const dispatch = useDispatch();
   const filter = useSelector((state: RootState) => state.filter.filter);
 
@@ -19,16 +21,14 @@ const Filters: React.FC = () => {
         className={filter === 'active' ? 'active' : ''}
         onClick={() => dispatch(setFilter('active'))}
       >
-        Невыполненные
+        Нужно купить
       </button>
       <button
         className={filter === 'completed' ? 'active' : ''}
         onClick={() => dispatch(setFilter('completed'))}
       >
-        Выполненные
+        Уже в корзине
       </button>
     </div>
   );
 };
-
-export default Filters;

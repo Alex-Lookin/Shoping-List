@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { updateTask, deleteTask } from '../app/tasksAPI.ts';
-import { TaskItemProps } from '../types/types.ts';
+import { updateTask, deleteTask } from '../../../../app/tasksAPI.ts';
+import { TaskItemProps } from '../../../../types/types.ts';
 
 
 /*TaskItem отвечает за отображение одного элемента задачи в списке дел*/
-const TaskItem = ({ task } : TaskItemProps) => {
+export const TaskItem = ({ task } : TaskItemProps) => {
   const dispatch = useDispatch();
 
   const handleToggleComplete = () => {
@@ -33,6 +33,3 @@ const TaskItem = ({ task } : TaskItemProps) => {
     </li>
   );
 };
-
-
-export default TaskItem;

@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ITask } from '../types/types.ts';
+import { ITasksState } from '../types/types.ts';
 import { fetchTasks, addTask, updateTask, deleteTask } from './tasksAPI.ts';
 
- // Замените на свой URL API
-
-const initialState: { tasks: ITask[]; status: 'idle' | 'loading' | 'succeeded' | 'failed'; error: string | null } = {
+const initialState: ITasksState = {
   tasks: [],
   status: 'idle',
   error: null,
@@ -25,7 +23,7 @@ const tasksSlice = createSlice({
       })
       .addCase(fetchTasks.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload.message || 'Failed to fetch tasks.';
+        state.error = action.payload.message || 'Ошибка по умолчанию';
       })
       .addCase(addTask.fulfilled, (state, action) => {
         state.tasks.push(action.payload);
@@ -42,5 +40,4 @@ const tasksSlice = createSlice({
   },
 });
 
-export const { } = tasksSlice.actions;
 export default tasksSlice.reducer;

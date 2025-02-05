@@ -1,29 +1,30 @@
-import Header from './components/Header.tsx';
-import TaskInput from './components/TaskInput.tsx';
-import Filters from './components/Filters.tsx';
-import TaskList from './components/TaskList.tsx';
+import { Header } from './Components/Header/';
+import { TaskInput } from './Components/TaskInput/';
+import { Filters } from './Components/Filters/'
+import { TaskList } from './Components/TaskList/';
 import { RootState } from './app/store.ts';
 import {  useSelector } from 'react-redux';
 // import './styles/globals.scss'
 
 
 const App = () => {
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const filter = useSelector((state: RootState) => state.filter.filter);
 
-  return(
+  return (
     <>
-      <Header title = 'Shopping List' />
+      <Header title="Shopping List" />
       <main className="app">
-
         <TaskInput />
-        <Filters />
+        <Filters
+          filter={''}
+          activeFilter={''}
+          onClick={function (): void {
+            throw new Error('Function not implemented.');
+          }}
+        />
         <ul className="task-list">
-          <TaskList tasks={tasks} filter={filter} />
-
+          <TaskList filter={filter} />
         </ul>
-
-
       </main>
     </>
   );
