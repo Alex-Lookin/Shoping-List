@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '../app/store.ts';
 
@@ -12,28 +11,21 @@ export interface ITitleHeaderProps {
   title: string;
 }
 
-export interface IFiltersProps {
-  filter: string;
-  setFilter: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export interface ITaskInputProps {
-  tasks: ITask[] | [];
-  setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
-}
-
-export interface ITaskItemProps {
+export interface TaskItemProps {
   task: ITask;
+}
+
+export interface ITasksState {
   tasks: ITask[];
-  setTasks: (tasks: ITask[]) => void;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
 }
 
-export interface ITaskListIProps {
-  tasks: ITask[] | [];
-  setTasks: (tasks: ITask[]) => void;
+export interface IFilterButtonProps {
   filter: string;
+  activeFilter: string;
+  onClick: () => void;
 }
-
 
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
