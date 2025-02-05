@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '../app/store.ts';
 
@@ -10,6 +9,10 @@ export interface ITask {
 
 export interface ITitleHeaderProps {
   title: string;
+}
+
+export interface TaskItemProps {
+  task: ITask;
 }
 
 

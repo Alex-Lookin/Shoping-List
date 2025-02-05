@@ -1,12 +1,18 @@
 import { useDispatch } from 'react-redux';
-import { toggleTask, deleteTask } from '../app/tasksSlice.ts';
+import { updateTask, deleteTask } from '../app/tasksAPI.ts';
+import { TaskItemProps } from '../types/types.ts';
+
 
 /*TaskItem отвечает за отображение одного элемента задачи в списке дел*/
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task } : TaskItemProps) => {
   const dispatch = useDispatch();
 
-  const handleToggleCompletion = () => {
-    dispatch(toggleTask(task.id));
+  const handleToggleComplete = () => {
+    const updatedTask = {
+      ...task,
+      completed: !task.completed, // Переключаем состояние completed
+    };
+    dispatch(updateTask(updatedTask)); // Передаем обновленный объект задачи
   };
 
   const handleDeleteTask = () => {
@@ -18,8 +24,8 @@ const TaskItem = ({ task }) => {
       <label className="wrapper-list">
         <input
           type="checkbox"
-          checked={task.completed}
-          onChange={handleToggleCompletion}
+          checked={task.completed} // Исправлено: используем значение свойства completed
+          onChange={handleToggleComplete}
         />
         <span>{task.text}</span>
         <button onClick={handleDeleteTask}>Удалить</button>
@@ -27,5 +33,6 @@ const TaskItem = ({ task }) => {
     </li>
   );
 };
+
 
 export default TaskItem;

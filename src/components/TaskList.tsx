@@ -1,15 +1,21 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../app/store';
 import TaskItem from './TaskItem';
 import { ITask } from '../types/types';
+import { fetchTasks } from '../app/tasksAPI.ts';
 
 interface TaskListProps {
   filter: string;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ filter }) => {
+const TaskList = ({ filter }: TaskListProps) => {
+  const dispatch = useDispatch();
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
 
   const filteredTasks = tasks.filter((task: ITask) => {
     if (filter === 'completed') return task.completed;
