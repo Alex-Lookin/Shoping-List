@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../../store/store.ts';
+import { AppDispatch } from '../../../store/store.ts';
 import { TaskItem } from '../TaskItem/';
 import { ITask } from '../../../types/types.ts';
 import { fetchTasks } from '../../../store/thunk.ts';
@@ -10,7 +10,7 @@ import { TaskListProps } from '../../../types/types.ts';
 import { getTask } from '../../../store/selector.ts';
 
 export const TaskList = ({ filter }: TaskListProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector(getTask);
 
   useEffect(() => {

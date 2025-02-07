@@ -1,11 +1,13 @@
 .filters {
-  max-width: 600px;
+  max-width: 800px;
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
-  padding-bottom: 10px;
+  padding: 10px 0;
+  background-color: var(--background-task-list);
 
   button {
+    width:20%;
     padding: 10px 20px;
     border-radius: 4px;
     background-color: var(--hover-blue-btn);
@@ -13,6 +15,7 @@
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    box-shadow: 0 6px 8px rgba(0, 0, 0.6, 0.6);
 
     &:hover {
       background-color: var(--blue-btn);

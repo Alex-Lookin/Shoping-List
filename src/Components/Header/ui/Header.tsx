@@ -1,4 +1,4 @@
-import { ITitleHeaderProps } from '../../../types/types.ts'
+import { ITitleHeaderProps } from '../../../types/types.ts';
 import './header.scss';
 
 export const Header = ({ title } : ITitleHeaderProps ) => {

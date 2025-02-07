@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Импортируем Router, Routes и Route
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './Components/Header/';
 import { TaskInput } from './Components/TaskInput/';
 import { Filters } from './Components/Filters/';
@@ -38,9 +38,7 @@ return (
                   throw new Error('Функция не сработала');
                 }}
               />
-
                 <TaskList filter={filter} />
-
             </main>
           </>
         }

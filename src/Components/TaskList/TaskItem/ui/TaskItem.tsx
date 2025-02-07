@@ -1,18 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { updateTask, deleteTask } from '../../../../store/thunk.ts';
 import { TaskItemProps } from '../../../../types/types.ts';
+import { AppDispatch } from '../../../../store/store.ts';
 import './taskItemStyles.scss';
 
-/*TaskItem отвечает за отображение одного элемента задачи в списке дел*/
 export const TaskItem = ({ task } : TaskItemProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleToggleComplete = () => {
     const updatedTask = {
       ...task,
-      completed: !task.completed, // Переключаем состояние completed
+      completed: !task.completed,
     };
-    dispatch(updateTask(updatedTask)); // Передаем обновленный объект задачи
+    dispatch(updateTask(updatedTask));
   };
 
   const handleDeleteTask = () => {
@@ -24,7 +24,7 @@ export const TaskItem = ({ task } : TaskItemProps) => {
       <label className="wrapper-list">
         <input
           type="checkbox"
-          checked={task.completed} // Исправлено: используем значение свойства completed
+          checked={task.completed}
           onChange={handleToggleComplete}
         />
         <span className="task-text">{task.text}</span>

@@ -1,1 +1,1 @@
-export { TaskInput } from './ui/TaskInput.tsx'
+export { TaskInput } from './ui/TaskInput.tsx';

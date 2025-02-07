@@ -1,78 +1,75 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask } from '../../../store/thunk.ts';
 import { ITask } from '../../../types/types.ts';
 import { getTask } from '../../../store/selector.ts';
 import { capitalizeFirstLetter } from '../../../utils';
+import { AppDispatch, RootState } from '../../../store/store.ts';
 import './taskInputStyle.scss';
 
 export const TaskInput: React.FC = () => {
-  const dispatch = useDispatch();
-  const [taskText, setTaskText] = useState('');
-  const [error, setError] = useState(''); // Состояние для ошибки
+  const dispatch = useDispatch<AppDispatch>();
+  const [taskText, setTaskText] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
-  // Получаем текущий список задач из состояния Redux
-  const tasks = useSelector(getTask);
+  const tasks = useSelector((state: RootState) => getTask(state));
 
   const handleAddTask = () => {
     if (taskText.trim()) {
-      // Приводим текст задачи к нижнему регистру для проверки на дубликаты
       const normalizedText = taskText.trim().toLowerCase();
-
-      // Проверяем, существует ли задача с таким же названием (игнорируя регистр)
       const isTaskExists = tasks.some((task) => task.text.toLowerCase() === normalizedText);
 
       if (isTaskExists) {
         setError('Продукт с таким названием уже существует');
-        return; // Прерываем выполнение функции
+        return;
       }
 
-      // Преобразуем первую букву текста задачи в верхний регистр
       const capitalizedText = capitalizeFirstLetter(taskText.trim());
 
       const newTask: ITask = {
-        id: Date.now(), // Используем временную метку для уникального id
-        text: capitalizedText, // Используем текст с первой заглавной буквой
+        id: Date.now(),
+        text: capitalizedText,
         completed: false,
       };
 
-      // Синхронный вызов dispatch (если возможно)
       dispatch(addTask(newTask))
         .then(() => {
-          setTaskText(''); // Очищаем поле ввода
-          setError(''); // Очищаем сообщение об ошибке
+          setTaskText('');
+          setError('');
         })
         .catch((error) => {
           console.error('Ошибка при добавлении продукта:', error);
-          setError('Ошибка при добавлении продукта');
+          setError('Ошибка при добавления продукта');
         });
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleAddTask(); // Вызываем функцию добавления задачи
+      handleAddTask();
     }
   };
+
+  const eventButtonClick = (e: ChangeEvent<HTMLInputElement>) => {
+    setTaskText(e.target.value);
+    setError('');
+  }
 
   return (
     <div className="task-input">
       <label>
         <input
           type="text"
-          placeholder="Введите название задачи"
+          placeholder="Введите название продукта"
           value={taskText}
-          onChange={(e) => {
-            setTaskText(e.target.value);
-            setError(''); // Очищаем ошибку при изменении текста
-          }}
+          onChange={eventButtonClick}
           onKeyDown={handleKeyDown}
         />
       </label>
       <button onClick={handleAddTask} disabled={!taskText.trim()}>
-        Создать
+        Записать
       </button>
-      {error && <p style={{ color: 'red' }}>{error}</p>} {/* Отображаем ошибку */}
+      {error && <p className='style-text'>{error}</p>}
     </div>
   );
 };

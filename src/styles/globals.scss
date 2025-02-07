@@ -1,7 +1,6 @@
 @forward 'normalize';
 
 html {
-
   box-sizing: border-box;
 }
 
@@ -9,7 +8,6 @@ html {
 *::before,
 *::after {
   box-sizing: inherit;
-
 }
 
 p,
@@ -37,9 +35,14 @@ img {
 
 body {
   max-height: 1100px;
-  min-width: 360px;
+  min-width: 420px;
   word-break: normal;
   background-image: url('../picture/backGroundColor.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: Georgia, serif;
 }
 
 li,
@@ -50,9 +53,7 @@ ol {
 }
 
 button {
-  //padding: 0;
   border: none;
-  //background-color: transparent;
   cursor: pointer;
 }
 
@@ -68,6 +69,7 @@ button {
   --delete-btn: #c82333;
   --hover-delete-btn: #FF0000FF;
   --green-btn: #034717;
+  --hover-green-btn:#116b0d;
   --color-scrollbar-thumb: #1D1E33;
   --hover-color-scrollbar-thumb: #1E2460;
 }

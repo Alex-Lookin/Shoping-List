@@ -4,17 +4,20 @@
   align-items: center;
   padding: 15px;
   margin-bottom: 10px;
-  background-color: var(--background-wrapper-list) ;
-  border: 1px solid #ddd;
   border-radius: 4px;
   transition: background-color 0.3s ease;
   cursor: pointer;
+  background-color: var(--background-wrapper-list) ;
+  border: 1px solid var(--light-grey);
+  color: var(--light-grey);
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 15px;
   box-shadow: 0 6px 8px rgba(0, 0, 0.6, 0.6);
 
   &:hover {
     background-color: var(--hover-background-wrapper-list);
   }
-
 
   .delete-btn {
     display: flex;
@@ -25,7 +28,7 @@
       cursor: pointer;
       font-size: 0.9rem;
       transition: background-color 0.3s ease;
-      background-color: #c82333 ;
+      background-color: var(--delete-btn) ;
       color: var(--light-grey);
       box-shadow: 0 6px 8px rgba(0, 0, 0.6, 0.6);
 

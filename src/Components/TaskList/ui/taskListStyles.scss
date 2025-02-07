@@ -1,11 +1,11 @@
 .task-list{
   max-width: 800px;
-  max-height: 900px;
+  max-height: 650px;
   overflow-y: auto;
   margin: 0 auto;
   padding: 20px;
   background-color: var(--background-task-list);
-  border-radius: 8px;
+  border-radius: 0 0 8px 8px;
   box-shadow: 0 6px 8px rgba(0, 0, 0.6, 0.6);
 }
 
@@ -28,8 +28,6 @@
 .task-list::-webkit-scrollbar-thumb:hover {
   background: var(--hover-color-scrollbar-thumb);
 }
-
-
 
 .back-btn {
     margin-top: 20px;
