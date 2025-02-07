@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ITasksState } from '../types/types.ts';
-import { fetchTasks, addTask, updateTask, deleteTask } from './tasksAPI.ts';
+import { fetchTasks, addTask, updateTask, deleteTask } from './thunk.ts';
 
 const initialState: ITasksState = {
   tasks: [],

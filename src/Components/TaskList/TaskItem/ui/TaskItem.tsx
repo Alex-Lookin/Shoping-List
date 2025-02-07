@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { updateTask, deleteTask } from '../../../../app/tasksAPI.ts';
+import { updateTask, deleteTask } from '../../../../store/thunk.ts';
 import { TaskItemProps } from '../../../../types/types.ts';
-
+import './taskItemStyles.scss';
 
 /*TaskItem отвечает за отображение одного элемента задачи в списке дел*/
 export const TaskItem = ({ task } : TaskItemProps) => {
@@ -27,8 +27,8 @@ export const TaskItem = ({ task } : TaskItemProps) => {
           checked={task.completed} // Исправлено: используем значение свойства completed
           onChange={handleToggleComplete}
         />
-        <span>{task.text}</span>
-        <button onClick={handleDeleteTask}>Удалить</button>
+        <span className="task-text">{task.text}</span>
+        <button className='delete-btn' onClick={handleDeleteTask}>Дождусь акции</button>
       </label>
     </li>
   );

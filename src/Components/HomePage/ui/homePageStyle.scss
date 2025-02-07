@@ -1,0 +1,31 @@
+.home-page {
+  max-width: 144;
+}
+
+
+
+.filters {
+  max-width: 600px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  padding-bottom: 10px;
+
+  button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: var(--hover-blue-btn);
+    color: var(--light-grey);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--blue-btn);
+    }
+
+    &.active {
+      background-color: var(--hover-btn);
+    }
+  }
+}

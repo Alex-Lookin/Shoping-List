@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTask } from '../../../app/tasksAPI.ts';
+import { addTask } from '../../../store/thunk.ts';
 import { ITask } from '../../../types/types.ts';
-import { RootState } from '../../../app/store.ts';
+import { getTask } from '../../../store/selector.ts';
+import { capitalizeFirstLetter } from '../../../utils';
+import './taskInputStyle.scss';
 
 export const TaskInput: React.FC = () => {
   const dispatch = useDispatch();
@@ -10,14 +12,9 @@ export const TaskInput: React.FC = () => {
   const [error, setError] = useState(''); // Состояние для ошибки
 
   // Получаем текущий список задач из состояния Redux
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const tasks = useSelector(getTask);
 
-  // Функция для преобразования первой буквы в верхний регистр
-  const capitalizeFirstLetter = (text: string) => {
-    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
-  };
-
-  const handleAddTask = async () => {
+  const handleAddTask = () => {
     if (taskText.trim()) {
       // Приводим текст задачи к нижнему регистру для проверки на дубликаты
       const normalizedText = taskText.trim().toLowerCase();
@@ -39,18 +36,19 @@ export const TaskInput: React.FC = () => {
         completed: false,
       };
 
-      try {
-        await dispatch(addTask(newTask)); // Ожидаем завершения асинхронной операции
-        setTaskText(''); // Очищаем поле ввода
-        setError(''); // Очищаем сообщение об ошибке
-      } catch (error) {
-        console.error('Ошибка при добавлении продукта:', error);
-        setError('Ошибка при добавлении продукта');
-      }
+      // Синхронный вызов dispatch (если возможно)
+      dispatch(addTask(newTask))
+        .then(() => {
+          setTaskText(''); // Очищаем поле ввода
+          setError(''); // Очищаем сообщение об ошибке
+        })
+        .catch((error) => {
+          console.error('Ошибка при добавлении продукта:', error);
+          setError('Ошибка при добавлении продукта');
+        });
     }
   };
 
-  // Обработчик нажатия клавиши
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleAddTask(); // Вызываем функцию добавления задачи

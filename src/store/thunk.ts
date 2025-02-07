@@ -1,19 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ITask } from '../types/types.ts';
+import { FetchTasksError, FetchTasksResponse, ITask } from '../types/types.ts';
 
 const API_URL = 'https://679bf67833d316846325a3e8.mockapi.io/tasks';
 
-
-
-export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
+export const fetchTasks = createAsyncThunk<
+  FetchTasksResponse, void, { rejectValue: FetchTasksError }
+>('tasks/fetchTasks', async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(API_URL);
-    return response.data;
-  } catch(error) {
+    const response = await axios.get<ITask[]>(API_URL);
+    return { tasks: response.data };
+  } catch (error) {
     console.log(error);
-    return { message: '\'Произошла ошибка при загрузке данных с сервера. Пожалуйста, проверьте ваше подключение к интернету и обновите страницу'};
-    }
+    return rejectWithValue({
+      message: 'Произошла ошибка при загрузке данных с сервера. Пожалуйста, проверьте ваше подключение к интернету и обновите страницу',
+    });
+  }
 });
 
 export const addTask = createAsyncThunk('tasks/addTask', async (newTask: ITask) => {

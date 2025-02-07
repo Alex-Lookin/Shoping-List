@@ -27,6 +27,18 @@ export interface IFilterButtonProps {
   onClick: () => void;
 }
 
+export interface TaskListProps {
+  filter: string;
+}
+
+export interface FetchTasksError {
+  message: string;
+}
+
+export interface FetchTasksResponse {
+  tasks: ITask[];
+}
+
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()

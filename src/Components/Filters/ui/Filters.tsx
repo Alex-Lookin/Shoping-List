@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../../app/filterSlice.ts';
-import { RootState } from '../../../app/store.ts';
+import { setFilter } from '../../../store/filterSlice.ts';
 import { IFilterButtonProps } from '../../../types/types.ts'
+import './filtersStyle.scss';
+import { getFilter } from '../../../store/selector.ts';
 
 
 export const Filters: React.FC<IFilterButtonProps> = () => {
   const dispatch = useDispatch();
-  const filter = useSelector((state: RootState) => state.filter.filter);
+  const filter = useSelector(getFilter);
 
   return (
     <div className="filters">

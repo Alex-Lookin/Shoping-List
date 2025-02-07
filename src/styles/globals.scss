@@ -1,19 +1,15 @@
-//@forward '_colors';
-//@forward '_fonts';
-//@forward '_typography';
-//@forward 'media';
 @forward 'normalize';
 
 html {
-  -webkit-box-sizing: border-box;
+
   box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: inherit;
   box-sizing: inherit;
+
 }
 
 p,
@@ -40,8 +36,10 @@ img {
 }
 
 body {
-  min-width: 320px;
+  max-height: 1100px;
+  min-width: 360px;
   word-break: normal;
+  background-image: url('../picture/backGroundColor.jpg');
 }
 
 li,
@@ -52,8 +50,24 @@ ol {
 }
 
 button {
-  padding: 0;
+  //padding: 0;
   border: none;
-  background-color: transparent;
+  //background-color: transparent;
   cursor: pointer;
+}
+
+:root{
+  --background-task-list: #49678D;
+  --dark-grey: #333;
+  --light-grey: #fff;
+  --blue-btn: #007bff;
+  --hover-blue-btn: #0056b3;
+  --hover-btn: #002137;
+  --background-wrapper-list: #1D334A;
+  --hover-background-wrapper-list: #395778;
+  --delete-btn: #c82333;
+  --hover-delete-btn: #FF0000FF;
+  --green-btn: #034717;
+  --color-scrollbar-thumb: #1D1E33;
+  --hover-color-scrollbar-thumb: #1E2460;
 }

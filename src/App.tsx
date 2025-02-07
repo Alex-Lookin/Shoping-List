@@ -1,32 +1,54 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Импортируем Router, Routes и Route
 import { Header } from './Components/Header/';
 import { TaskInput } from './Components/TaskInput/';
-import { Filters } from './Components/Filters/'
+import { Filters } from './Components/Filters/';
 import { TaskList } from './Components/TaskList/';
-import { RootState } from './app/store.ts';
-import {  useSelector } from 'react-redux';
-// import './styles/globals.scss'
-
+import { useSelector } from 'react-redux';
+import { HomePage} from './Components/HomePage';
+import { NotFoundPage } from './Components/NotFoundPage/';
+import { getFilter } from './store/selector.ts'
+import './styles/globals.scss';
 
 const App = () => {
-  const filter = useSelector((state: RootState) => state.filter.filter);
+  const filter = useSelector(getFilter)
 
-  return (
-    <>
-      <Header title="Shopping List" />
-      <main className="app">
-        <TaskInput />
-        <Filters
-          filter={''}
-          activeFilter={''}
-          onClick={function (): void {
-            throw new Error('Function not implemented.');
-          }}
-        />
-        <ul className="task-list">
-          <TaskList filter={filter} />
-        </ul>
-      </main>
-    </>
-  );
+return (
+  <Router>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Header title="Shopping List" />
+            <HomePage />
+          </>
+        }
+      />
+      <Route
+        path="/tasks"
+        element={
+          <>
+            <Header title="Shopping List" />
+            <main className="app">
+              <TaskInput />
+              <Filters
+                filter={''}
+                activeFilter={''}
+                onClick={() => {
+                  throw new Error('Функция не сработала');
+                }}
+              />
+
+                <TaskList filter={filter} />
+
+            </main>
+          </>
+        }
+      />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  </Router>
+);
 };
+
 export default App;

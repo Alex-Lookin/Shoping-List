@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../../app/store.ts';
-import {TaskItem} from '../TaskItem/';
+import { RootState } from '../../../store/store.ts';
+import { TaskItem } from '../TaskItem/';
 import { ITask } from '../../../types/types.ts';
-import { fetchTasks } from '../../../app/tasksAPI.ts';
-
-interface TaskListProps {
-  filter: string;
-}
+import { fetchTasks } from '../../../store/thunk.ts';
+import { Link } from 'react-router-dom';
+import './taskListStyles.scss';
+import { TaskListProps } from '../../../types/types.ts';
+import { getTask } from '../../../store/selector.ts';
 
 export const TaskList = ({ filter }: TaskListProps) => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+  const tasks = useSelector(getTask);
 
   useEffect(() => {
     dispatch(fetchTasks());
@@ -24,10 +24,13 @@ export const TaskList = ({ filter }: TaskListProps) => {
   });
 
   return (
-    <>
+    <ul className="task-list">
       {filteredTasks.map((task: ITask) => (
         <TaskItem key={task.id} task={task} />
       ))}
-    </>
+      <Link to="/">
+        <button className="back-btn">Закончить покупки</button>
+      </Link>
+    </ul>
   );
 };
